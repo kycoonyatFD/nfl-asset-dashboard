@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFL Teams — Logo Assets</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f1419 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #e2e8f0;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .emoji {
+            font-size: 48px;
+            display: block;
+            margin: 15px 0;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .date {
+            color: #94a3b8;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            align-items: center;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .team-count {
+            font-weight: 600;
+            color: #cbd5e1;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px 18px;
+            border: 2px solid #334155;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 10px;
+            font-size: 15px;
+            color: #e2e8f0;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: rgba(30, 41, 59, 0.8);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+        }
+
+        .search-box::placeholder {
+            color: #64748b;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 18px;
+            border: 2px solid #334155;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            color: #cbd5e1;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            letter-spacing: 0.3px;
+        }
+
+        .filter-btn:hover {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+            color: #93c5fd;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            border-color: #1d4ed8;
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 24px;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .division-section {
+            margin-bottom: 50px;
+        }
+
+        .division-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+            color: #93c5fd;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .team-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.6) 100%);
+            border: 2px solid #334155;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+
+        .team-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 16px 48px rgba(59, 130, 246, 0.2);
+            transform: translateY(-8px);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(30, 41, 59, 0.8) 100%);
+        }
+
+        .logo-container {
+            width: 100%;
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.4) 100%);
+            border-bottom: 2px solid #334155;
+        }
+
+        .logo-container img {
+            max-width: 85%;
+            max-height: 85%;
+            filter: drop-shadow(0 4px 12px rgba(59, 130, 246, 0.2));
+        }
+
+        .card-content {
+            padding: 18px;
+        }
+
+        .team-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: #e2e8f0;
+            letter-spacing: 0.3px;
+        }
+
+        .copy-button {
+            width: 100%;
+            padding: 10px 14px;
+            background: linear-gradient(135deg, #475569 0%, #334155 100%);
+            border: 2px solid #334155;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            color: #cbd5e1;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+
+        .copy-button:hover {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            border-color: #1d4ed8;
+            color: white;
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.2);
+        }
+
+        .copy-button.copied {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border-color: #047857;
+        }
+
+        .copy-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+        }
+
+        .copy-notification.show {
+            opacity: 1;
+        }
+
+        .info-text {
+            text-align: center;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 60px;
+            letter-spacing: 0.5px;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .password-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f1419 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .password-container {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.8) 100%);
+            backdrop-filter: blur(20px);
+            border: 2px solid #334155;
+            padding: 60px 50px;
+            border-radius: 20px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            animation: popIn 0.6s ease-out;
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .password-emoji {
+            font-size: 64px;
+            display: block;
+            margin-bottom: 25px;
+        }
+
+        .password-container h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .password-subtitle {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 35px;
+            letter-spacing: 0.5px;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #334155;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 10px;
+            font-size: 16px;
+            color: #e2e8f0;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .password-input::placeholder {
+            color: #64748b;
+        }
+
+        .password-btn {
+            width: 100%;
+            padding: 14px 18px;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            border: 2px solid #1d4ed8;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        .password-btn:hover {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .password-btn:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div id="passwordScreen" class="password-screen">
+        <div class="password-container">
+            <span class="password-emoji">🏈</span>
+            <h2>Access</h2>
+            <div class="password-subtitle">Enter your password</div>
+            <input type="password" id="passwordInput" class="password-input" placeholder="••••••">
+            <button id="passwordBtn" class="password-btn">Unlock</button>
+        </div>
+    </div>
+
+    <div id="mainContent" class="hidden">
+        <div class="container">
+            <header>
+                <span class="emoji">🏈</span>
+                <h1>NFL Teams — Logo Assets</h1>
+                <div class="date">[INTERNAL FANDUEL USE ONLY]</div>
+            </header>
+
+            <div class="controls">
+                <span class="team-count"><span id="teamCount">32</span> TEAMS · LOGO SVG LINKS</span>
+                <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search teams...">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="AFC">AFC</button>
+                    <button class="filter-btn" data-filter="NFC">NFC</button>
+                    <button class="filter-btn" data-filter="afc-east">AFC East</button>
+                    <button class="filter-btn" data-filter="afc-north">AFC North</button>
+                    <button class="filter-btn" data-filter="afc-south">AFC South</button>
+                    <button class="filter-btn" data-filter="afc-west">AFC West</button>
+                    <button class="filter-btn" data-filter="nfc-east">NFC East</button>
+                    <button class="filter-btn" data-filter="nfc-north">NFC North</button>
+                    <button class="filter-btn" data-filter="nfc-south">NFC South</button>
+                    <button class="filter-btn" data-filter="nfc-west">NFC West</button>
+                </div>
+            </div>
+
+            <div id="teamGrid"></div>
+
+            <div class="info-text">
+                NFL Teams · FanDuel Internal · Copy or download any logo
+            </div>
+        </div>
+    </div>
+
+    <div class="copy-notification" id="notification">✓ Copied to clipboard</div>
+
+    <script>
+        // Password protection
+        const correctPassword = 'kobe';
+        const passwordInput = document.getElementById('passwordInput');
+        const passwordBtn = document.getElementById('passwordBtn');
+        const passwordScreen = document.getElementById('passwordScreen');
+        const mainContent = document.getElementById('mainContent');
+
+        function checkPassword() {
+            if (passwordInput.value === correctPassword) {
+                passwordScreen.classList.add('hidden');
+                mainContent.classList.remove('hidden');
+            } else {
+                passwordInput.value = '';
+                passwordInput.style.borderColor = '#ef4444';
+                passwordInput.placeholder = '❌ Wrong password';
+                setTimeout(() => {
+                    passwordInput.style.borderColor = '';
+                    passwordInput.placeholder = '••••••';
+                }, 1500);
+            }
+        }
+
+        passwordBtn.addEventListener('click', checkPassword);
+        passwordInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkPassword();
+        });
+
+        const teams = {
+            'AFC East': [
+                { name: 'Buffalo Bills', acronym: 'BUF', conference: 'AFC' },
+                { name: 'Miami Dolphins', acronym: 'MIA', conference: 'AFC' },
+                { name: 'New England Patriots', acronym: 'NE', conference: 'AFC' },
+                { name: 'New York Jets', acronym: 'NYJ', conference: 'AFC' }
+            ],
+            'AFC North': [
+                { name: 'Baltimore Ravens', acronym: 'BAL', conference: 'AFC' },
+                { name: 'Cincinnati Bengals', acronym: 'CIN', conference: 'AFC' },
+                { name: 'Cleveland Browns', acronym: 'CLE', conference: 'AFC' },
+                { name: 'Pittsburgh Steelers', acronym: 'PIT', conference: 'AFC' }
+            ],
+            'AFC South': [
+                { name: 'Houston Texans', acronym: 'HOU', conference: 'AFC' },
+                { name: 'Indianapolis Colts', acronym: 'IND', conference: 'AFC' },
+                { name: 'Jacksonville Jaguars', acronym: 'JAX', conference: 'AFC' },
+                { name: 'Tennessee Titans', acronym: 'TEN', conference: 'AFC' }
+            ],
+            'AFC West': [
+                { name: 'Denver Broncos', acronym: 'DEN', conference: 'AFC' },
+                { name: 'Kansas City Chiefs', acronym: 'KC', conference: 'AFC' },
+                { name: 'Los Angeles Chargers', acronym: 'LAC', conference: 'AFC' },
+                { name: 'Las Vegas Raiders', acronym: 'LV', conference: 'AFC' }
+            ],
+            'NFC East': [
+                { name: 'Dallas Cowboys', acronym: 'DAL', conference: 'NFC' },
+                { name: 'New York Giants', acronym: 'NYG', conference: 'NFC' },
+                { name: 'Philadelphia Eagles', acronym: 'PHI', conference: 'NFC' },
+                { name: 'Washington Commanders', acronym: 'WAS', conference: 'NFC' }
+            ],
+            'NFC North': [
+                { name: 'Chicago Bears', acronym: 'CHI', conference: 'NFC' },
+                { name: 'Detroit Lions', acronym: 'DET', conference: 'NFC' },
+                { name: 'Green Bay Packers', acronym: 'GB', conference: 'NFC' },
+                { name: 'Minnesota Vikings', acronym: 'MIN', conference: 'NFC' }
+            ],
+            'NFC South': [
+                { name: 'Atlanta Falcons', acronym: 'ATL', conference: 'NFC' },
+                { name: 'Carolina Panthers', acronym: 'CAR', conference: 'NFC' },
+                { name: 'New Orleans Saints', acronym: 'NO', conference: 'NFC' },
+                { name: 'Tampa Bay Buccaneers', acronym: 'TB', conference: 'NFC' }
+            ],
+            'NFC West': [
+                { name: 'Arizona Cardinals', acronym: 'ARI', conference: 'NFC' },
+                { name: 'Los Angeles Rams', acronym: 'LA', conference: 'NFC' },
+                { name: 'San Francisco 49ers', acronym: 'SF', conference: 'NFC' },
+                { name: 'Seattle Seahawks', acronym: 'SEA', conference: 'NFC' }
+            ]
+        };
+
+        let filteredTeams = { ...teams };
+        let currentFilter = 'all';
+
+        function getLogoUrl(acronym) {
+            return `https://static.www.nfl.com/league/api/clubs/logos/${acronym}.svg`;
+        }
+
+        function renderGrid() {
+            const grid = document.getElementById('teamGrid');
+            grid.innerHTML = '';
+
+            let totalTeams = 0;
+
+            Object.keys(filteredTeams).forEach(division => {
+                const divisionTeams = filteredTeams[division];
+                if (divisionTeams.length === 0) return;
+
+                const divisionSection = document.createElement('div');
+                divisionSection.className = 'division-section';
+
+                const divisionTitle = document.createElement('div');
+                divisionTitle.className = 'division-title';
+                divisionTitle.textContent = division;
+                divisionSection.appendChild(divisionTitle);
+
+                const divisionGrid = document.createElement('div');
+                divisionGrid.className = 'grid';
+
+                divisionTeams.forEach(team => {
+                    totalTeams++;
+                    const card = document.createElement('div');
+                    card.className = 'team-card';
+                    card.setAttribute('data-team', team.name.toLowerCase());
+
+                    const logoContainer = document.createElement('div');
+                    logoContainer.className = 'logo-container';
+
+                    const img = document.createElement('img');
+                    img.src = getLogoUrl(team.acronym);
+                    img.alt = team.name;
+                    logoContainer.appendChild(img);
+
+                    const content = document.createElement('div');
+                    content.className = 'card-content';
+
+                    const teamName = document.createElement('div');
+                    teamName.className = 'team-name';
+                    teamName.textContent = team.name;
+                    content.appendChild(teamName);
+
+                    const copyButton = document.createElement('button');
+                    copyButton.className = 'copy-button';
+                    copyButton.textContent = 'Copy Link';
+                    copyButton.onclick = () => copyToClipboard(getLogoUrl(team.acronym), copyButton);
+                    content.appendChild(copyButton);
+
+                    card.appendChild(logoContainer);
+                    card.appendChild(content);
+                    divisionGrid.appendChild(card);
+                });
+
+                divisionSection.appendChild(divisionGrid);
+                grid.appendChild(divisionSection);
+            });
+
+            document.getElementById('teamCount').textContent = totalTeams;
+        }
+
+        function copyToClipboard(text, button) {
+            navigator.clipboard.writeText(text).then(() => {
+                const notification = document.getElementById('notification');
+                notification.classList.add('show');
+
+                const originalText = button.textContent;
+                button.textContent = '✓ Copied!';
+                button.classList.add('copied');
+
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        function applyFilter(filter) {
+            currentFilter = filter;
+            filteredTeams = { ...teams };
+
+            if (filter === 'all') {
+                // Show all teams
+            } else if (filter === 'AFC') {
+                Object.keys(filteredTeams).forEach(division => {
+                    if (!division.startsWith('AFC')) {
+                        filteredTeams[division] = [];
+                    }
+                });
+            } else if (filter === 'NFC') {
+                Object.keys(filteredTeams).forEach(division => {
+                    if (!division.startsWith('NFC')) {
+                        filteredTeams[division] = [];
+                    }
+                });
+            } else {
+                Object.keys(filteredTeams).forEach(division => {
+                    if (division.toLowerCase().replace(' ', '-') !== filter) {
+                        filteredTeams[division] = [];
+                    }
+                });
+            }
+
+            applySearch();
+        }
+
+        function applySearch() {
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+            const tempTeams = { ...teams };
+
+            Object.keys(tempTeams).forEach(division => {
+                tempTeams[division] = tempTeams[division].filter(team =>
+                    team.name.toLowerCase().includes(searchTerm) ||
+                    team.acronym.toLowerCase().includes(searchTerm)
+                );
+            });
+
+            // Apply current filter on top of search
+            if (currentFilter === 'AFC') {
+                Object.keys(tempTeams).forEach(division => {
+                    if (!division.startsWith('AFC')) {
+                        tempTeams[division] = [];
+                    }
+                });
+            } else if (currentFilter === 'NFC') {
+                Object.keys(tempTeams).forEach(division => {
+                    if (!division.startsWith('NFC')) {
+                        tempTeams[division] = [];
+                    }
+                });
+            } else if (currentFilter !== 'all') {
+                Object.keys(tempTeams).forEach(division => {
+                    if (division.toLowerCase().replace(' ', '-') !== currentFilter) {
+                        tempTeams[division] = [];
+                    }
+                });
+            }
+
+            filteredTeams = tempTeams;
+            renderGrid();
+        }
+
+        // Event listeners
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                applyFilter(e.target.getAttribute('data-filter'));
+                renderGrid();
+            });
+        });
+
+        document.getElementById('searchBox').addEventListener('input', applySearch);
+
+        // Initial render
+        renderGrid();
+    </script>
+</body>
+</html>
